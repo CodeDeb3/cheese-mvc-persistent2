@@ -21,7 +21,7 @@ import javax.validation.Valid;
 @RequestMapping("cheese")
 public class CheeseController {
 
-    @Autowired
+    @Autowired   // I should be given an instance of that class and populated
     private CheeseDao cheeseDao;
 
     // Request path: /cheese

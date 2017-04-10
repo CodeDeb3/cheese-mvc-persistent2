@@ -1,15 +1,17 @@
 package org.launchcode.models.data;
 
-import org.launchcode.models.Cheese;
+import org.launchcode.models.Category;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 
 /**
- * Created by LaunchCode
+ * Created by Debbie on 4/10/2017.
  */
+
 @Repository
-@Transactional  // all methods should be as one transaction
-public interface CheeseDao extends CrudRepository<Cheese, Integer> {
+@Transactional
+public interface CategoryDao extends CrudRepository<Category, Integer> {
+
 }
