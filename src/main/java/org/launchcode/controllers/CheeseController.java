@@ -1,7 +1,8 @@
 package org.launchcode.controllers;
 
 import org.launchcode.models.Cheese;
-import org.launchcode.models.CheeseType;
+
+import org.launchcode.models.data.CategoryDao;
 import org.launchcode.models.data.CheeseDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,8 +22,14 @@ import javax.validation.Valid;
 @RequestMapping("cheese")
 public class CheeseController {
 
-    @Autowired   // I should be given an instance of that class and populated
-    private CheeseDao cheeseDao;
+    // I should be given an instance of that class and populated
+
+    @Autowired
+    CheeseDao cheeseDao;
+
+
+    CategoryDao categoryDao;
+
 
     // Request path: /cheese
     @RequestMapping(value = "")
@@ -38,7 +45,8 @@ public class CheeseController {
     public String displayAddCheeseForm(Model model) {
         model.addAttribute("title", "Add Cheese");
         model.addAttribute(new Cheese());
-        model.addAttribute("cheeseTypes", CheeseType.values());
+        model.addAttribute("categories", categoryDao.findAll());
+//        model.addAttribute("cheeseTypes", CheeseType.values());
         return "cheese/add";
     }
 

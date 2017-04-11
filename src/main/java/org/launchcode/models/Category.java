@@ -1,9 +1,9 @@
 package org.launchcode.models;
 
-import org.springframework.data.annotation.Id;
+//import org.springframework.data.annotation.Id;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
+import javax.persistence.*;
+//import javax.persistence.GeneratedValue;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -29,6 +29,9 @@ public class Category {
         this.name = name;
     }
 
+    public int getId() {
+        return id;
+    }
     public String getName() {
         return name;
     }
