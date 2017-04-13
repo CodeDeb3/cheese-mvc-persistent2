@@ -15,6 +15,7 @@ import javax.validation.constraints.Size;
 @Entity
 public class Cheese {
 
+    // tell hb primary key in db
     @Id
     @GeneratedValue
     private int id;
@@ -27,7 +28,7 @@ public class Cheese {
     @Size(min=1, message = "Description must not be empty")
     private String description;
 
-    @ManyToOne  // cheese can only have 1 category
+    @ManyToOne  // cheese can only have 1 category @ Category class
     private Category category;
 
     public Cheese(String name, String description) {
