@@ -28,7 +28,8 @@ public class Cheese {
     @Size(min=1, message = "Description must not be empty")
     private String description;
 
-    @ManyToOne  // cheese can only have 1 category @ Category class
+    // for 1 category there are many cheeses that can have one cat
+    @ManyToOne
     private Category category;
 
     public Cheese(String name, String description) {
