@@ -9,6 +9,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 
@@ -21,7 +22,7 @@ import javax.validation.Valid;
 public class CategoryController {
 
     @Autowired
-    CategoryDao categoryDao;
+    private CategoryDao categoryDao;
 
 
     @RequestMapping(value = "", method = RequestMethod.GET)
@@ -47,13 +48,11 @@ public class CategoryController {
 
         if (errors.hasErrors()) {
             model.addAttribute("title","Add Category");
-
             return "category/add";
         }
 
 
         categoryDao.save(category);
-
         return "redirect:";
 
 

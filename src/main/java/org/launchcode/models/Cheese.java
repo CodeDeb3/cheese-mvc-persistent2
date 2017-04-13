@@ -27,8 +27,8 @@ public class Cheese {
     @Size(min=1, message = "Description must not be empty")
     private String description;
 
-//    @ManyToOne  // cheese can only have 1 category
-//    private Category category;
+    @ManyToOne  // cheese can only have 1 category
+    private Category category;
 
     public Cheese(String name, String description) {
         this.name = name;
@@ -58,11 +58,11 @@ public class Cheese {
         this.description = description;
     }
 
-//    public Category getCategory() {
-//        return category;
-//    }
-//
-//    public void setCategory(Category category) {
-//        this.category = category;
-//    }
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 }
