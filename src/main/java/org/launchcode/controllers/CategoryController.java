@@ -21,7 +21,7 @@ import javax.validation.Valid;
 public class CategoryController {
 
     @Autowired
-    private CategoryDao categoryDao;
+    CategoryDao categoryDao;
 
 
     @RequestMapping(value = "", method = RequestMethod.GET)

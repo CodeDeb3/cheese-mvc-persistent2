@@ -1,11 +1,9 @@
 package org.launchcode.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 /**
  * Created by LaunchCode
@@ -31,6 +29,12 @@ public class Cheese {
     // for 1 category there are many cheeses that can have one cat
     @ManyToOne
     private Category category;
+
+    // many2many mapped can be used on menu classes these cheeses mapped the menu java
+    // list
+
+    @ManyToMany(mappedBy = "cheeses")
+    private List<Menu> menus;
 
     public Cheese(String name, String description) {
         this.name = name;
