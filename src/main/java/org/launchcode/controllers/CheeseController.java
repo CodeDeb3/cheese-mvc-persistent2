@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * Created by LaunchCode
@@ -26,10 +27,10 @@ public class CheeseController {
     // I should be given an instance of that class and populated
 
     @Autowired
-    private CheeseDao cheeseDao;
+    CheeseDao cheeseDao;
 
     @Autowired
-    private CategoryDao categoryDao;
+    CategoryDao categoryDao;
 
 
     // Request path: /cheese
@@ -46,6 +47,7 @@ public class CheeseController {
     public String displayAddCheeseForm(Model model) {
         model.addAttribute("title", "Add Cheese");
         model.addAttribute(new Cheese());
+        // send list of all categories ..findAll
         model.addAttribute("categories", categoryDao.findAll());
 //        model.addAttribute("cheeseTypes", CheeseType.values());
         return "cheese/add";
@@ -55,6 +57,8 @@ public class CheeseController {
     public String processAddCheeseForm(@ModelAttribute  @Valid Cheese newCheese,
                                        Errors errors, @RequestParam int categoryId, Model model) {
 
+        // categoryId parameter goes to template add cheese in type as "categoryId"
+
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Cheese");
             model.addAttribute("categories", categoryDao.findAll());
@@ -63,7 +67,6 @@ public class CheeseController {
 
         Category cat = categoryDao.findOne(categoryId);
         newCheese.setCategory(cat);
-
         cheeseDao.save(newCheese);
         return "redirect:";
     }
@@ -85,4 +88,21 @@ public class CheeseController {
         return "redirect:";
     }
 
+    // this lists all cheeses with all categories id matches with request param
+    // href in cat/index.html
+    @RequestMapping(value = "category", method=RequestMethod.GET)
+    public String category(Model model, @RequestParam int id) {
+        // hybernate will populate all the cheeses in the list under id cat
+
+        Category cat = categoryDao.findOne(id);
+        List<Cheese> cheeses = cat.getCheeses();
+        model.addAttribute("cheeses", cheeses);
+        model.addAttribute("title", "Cheeses in Category: " + cat.getName());
+
+        return "cheese/index";
+
+
+
+
+    }
 }
