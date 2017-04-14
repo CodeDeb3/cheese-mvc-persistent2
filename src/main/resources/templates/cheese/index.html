@@ -14,9 +14,9 @@
 <table class="table">
 
     <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Category</th>
+        <th>Home</th>
+        <th>Categories</th>
+        <th>Menus</th>
     </tr>
 
     <tr th:each="cheese : ${cheeses}">
@@ -26,6 +26,10 @@
     </tr>
 
 </table>
+
+<a href="/cheese/add">Add</a> |
+<a href="/cheese/remove">Remove</a>
+
 
 </body>
 </html>

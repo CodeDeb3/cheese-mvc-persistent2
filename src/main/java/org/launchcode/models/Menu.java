@@ -1,7 +1,7 @@
 package org.launchcode.models;
 
-import org.springframework.data.annotation.Id;
 
+import javax.persistence.Id;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.ManyToMany;
@@ -42,5 +42,6 @@ public class Menu {
 
     public void setName(String name) {this.name = name;}
 
+    // do not set cheeses bc it already has its own controller
     public List<Cheese> getCheeses() {return cheeses;}
 }
